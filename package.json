@@ -1,0 +1,22 @@
+{
+  "name": "universegram",
+  "version": "1.0.0",
+  "description": "universegram",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "bcrypt": "^5.0.1",
+    "mongoose": "^6.2.10",
+    "validator": "^13.7.0"
+  }
+}
