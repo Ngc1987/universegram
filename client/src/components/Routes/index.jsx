@@ -1,12 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Navbar from "../Navbar";
 import Home from "../../pages/Home";
 import Profile from "../../pages/Profile";
 import Trending from "../../pages/Trending";
 
-const index = () => {
+
+/**
+ * @component
+ * @description Component which contains all the routes of the application
+ */
+const AppRouter = () => {
 	return (
 		<Router>
+		<Navbar/>
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/profil" element={<Profile />} />
@@ -17,4 +24,8 @@ const index = () => {
 	)
 }
 
-export default index;
+AppRouter.propTypes = {
+
+}
+
+export default AppRouter;

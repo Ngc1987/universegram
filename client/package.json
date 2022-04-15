@@ -38,6 +38,12 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
-    "react-router-dom": "^6.3.0"
+    "js-cookie": "^3.0.1",
+    "react-redux": "^7.2.8",
+    "react-router-dom": "^6.3.0",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.1"
   }
 }

@@ -2,14 +2,22 @@ import React, { useState } from 'react';
 import axios from "axios";
 import SignInForm from "./SignInForm";
 
+
+/**
+ * @component
+ * @description Component SignIn form, is the form to register the user
+ */
 const SignUpForm = () => {
 
+	// States to take the inputs values
 	const [formSubmit, setFormSubmit] = useState(false);
 	const [pseudo, setPseudo] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [controlPassword, setControlPassword] = useState("");
 
+
+	// Function to register the user or display the errors
 	const handleRegister = async (e) => {
 		e.preventDefault();
 
@@ -34,7 +42,7 @@ const SignUpForm = () => {
 		} else {
 			await axios({
 				method: "post",
-				url: `${process.env.REACT_APP_API_URL}api/user/register`,
+				url: `${process.env.REACT_APP_API_URL}/api/user/register`,
 				data: {
 					pseudo,
 					email,
@@ -121,6 +129,10 @@ const SignUpForm = () => {
 		
 		
 	)
+}
+
+SignUpForm.propTypes = {
+
 }
 
 export default SignUpForm;
