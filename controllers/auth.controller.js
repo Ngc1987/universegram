@@ -36,7 +36,7 @@ module.exports.signIn = async (req, res) => {
 	catch (err) {
 		const errors = signInErrors(err);
 		res.status(200).json({ errors });
-		console.log(err)
+		// console.log(err)
 	}
 }
 

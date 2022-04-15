@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import axios from "axios";
 
+
+/**
+ * @component
+ * @description Component SignIn form, is the form to connect the user
+ */
 const SignInForm = () => {
 
+	// States to take the inputs values
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	// Function to login the user or display the errors
 	const handleLogin = (e) => {
 		e.preventDefault();
 
@@ -15,7 +22,7 @@ const SignInForm = () => {
 
 		axios({
 			method: "post",
-			url: `${process.env.REACT_APP_API_URL}api/user/login`,
+			url: `${process.env.REACT_APP_API_URL}/api/user/login`,
 			withCredentials: true,
 			data: {
 				email,
@@ -33,7 +40,7 @@ const SignInForm = () => {
 				}
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log(err + "C'est chelou");
 			})
 	}
 
@@ -63,6 +70,10 @@ const SignInForm = () => {
 			<input type="submit" value="Se connecter" />
 		</form>
 	)
+}
+
+SignInForm.propTypes = {
+	
 }
 
 export default SignInForm;
