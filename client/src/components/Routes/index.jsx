@@ -4,6 +4,7 @@ import Navbar from "../Navbar";
 import Home from "../../pages/Home";
 import Profile from "../../pages/Profile";
 import Trending from "../../pages/Trending";
+import LeftNav from "../LeftNav";
 
 
 /**
@@ -14,6 +15,7 @@ const AppRouter = () => {
 	return (
 		<Router>
 		<Navbar/>
+		<LeftNav/>
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/profil" element={<Profile />} />
