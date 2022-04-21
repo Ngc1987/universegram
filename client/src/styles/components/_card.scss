@@ -8,6 +8,7 @@
   margin: 8px auto;
   position: relative;
   min-height: 100px;
+  width: 100%;
 
   @media screen and(max-width: 590px) {
     grid-template-columns: 1fr;
@@ -244,7 +245,14 @@
             font-family: $font-1;
           }
           span {
-            transform: translateX(6px);
+            transform: translate(6px, 1px);
+			cursor: pointer;
+
+			img {
+				box-shadow: none;
+				height: 18px;
+				width: 18px;
+			}
           }
         }
 

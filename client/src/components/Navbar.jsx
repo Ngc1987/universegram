@@ -18,7 +18,7 @@ const Navbar = () => {
 		<nav>
 			<div className="nav-container">
 				<div className="logo">
-					<NavLink exact to="/">
+					<NavLink to="/">
 						<div className="logo">
 							<img src="./img/icon.png" alt="" />
 							<h3>UniverseGram</h3>

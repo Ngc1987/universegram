@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import LeftNav from "../LeftNav";
+// import LeftNav from "../LeftNav";
 import { useSelector, useDispatch } from 'react-redux';
 import UploadImg from "./UploadImg";
 import { updateBio } from "../../actions/user.actions";
@@ -30,7 +30,7 @@ const UpdateProfile = () => {
 
 	return (
 		<div className="profil-container">
-			<LeftNav/>
+			{/* <LeftNav/> */}
 			<h1>Profil de {userData.pseudo}</h1>
 			<div className="update-container">
 				<div className="left-part">
@@ -83,7 +83,7 @@ const UpdateProfile = () => {
 											<img src={user.picture} alt={`${user.pseudo}-pic`} />
 											<h4>{user.pseudo}</h4>
 											<div className="follow-handler">
-												<FollowHandler idToFollow={user._id} />
+												<FollowHandler idToFollowOrUnfollow={user._id} type="suggestion" />
 											</div>
 										</li>
 									)
@@ -110,7 +110,7 @@ const UpdateProfile = () => {
 												<img src={user.picture} alt={`${user.pseudo}-pic`} />
 												<h4>{user.pseudo}</h4>
 												<div className="follow-handler">
-													<FollowHandler idToFollow={user._id} />
+													<FollowHandler idToFollowOrUnfollow={user._id} type="suggestion" />
 												</div>
 											</li>
 										)
