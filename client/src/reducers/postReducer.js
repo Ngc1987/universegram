@@ -1,10 +1,10 @@
-import { DELETE_COMMENT, DELETE_POST, EDIT_COMMENT, GET_POSTS, LIKE_POST, UNLIKE_POST, UPDATE_POST } from "../actions/post.actions"
+import { DELETE_COMMENT, DELETE_POST, EDIT_COMMENT, GET_POSTS, ADD_POSTS, LIKE_POST, UNLIKE_POST, UPDATE_POST } from "../actions/post.actions"
 
-const intialState = {
+const initialState = {
 
 }
 
-export default function postReducer(state = intialState, action) {
+export default function postReducer(state = initialState, action) {
 	switch (action.type) {
 		case GET_POSTS:
 			return action.payload;
