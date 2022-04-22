@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
+import { addPosts, getPosts } from "../../actions/post.actions";
 import { isEmpty } from '../../utils/isEmpty';
+import { timestampParser } from "../../utils/timestampParser";
 
 const NewPostForm = () => {
 
@@ -12,19 +14,55 @@ const NewPostForm = () => {
 	const [file, setFile] = useState(null);
 
 	const userData = useSelector((state) => state.userReducer);
+	const errors = useSelector((state) => state.errorsReducer.postErrors);
 
+	const dispatch = useDispatch();
 	useEffect(() => {
 		if (!isEmpty(userData)) {
 			setIsLoading(false);
 		}
-	}, [userData])
+		const handleVideo = () => {
+			let findVideo = message.split(" ");
+			for(let i = 0; i < findVideo.length; i++) {
+				if (findVideo[i].includes("https://www.yout") || 
+					findVideo[i].includes("https://yout")
+				) {
+					let embed = findVideo[i].replace("watch?v=", "embed/");
+					setVideo(embed.split("&")[0]);
+					findVideo.splice(i, 1);
+					setMessage(findVideo.join(" "));
+					setPostPicture("");
+				}
+			
+			}
+			
+		}
+		handleVideo();
 
-	const handlePicture = () => {
+	}, [userData, message, video])
 
+
+	const handlePicture = (e) => {
+		setPostPicture(URL.createObjectURL(e.target.files[0]))
+		setFile(e.target.files[0]);
+		setVideo("");
 	}
 
-	const handlePost = () => {
+	const handlePost = async () => {
+		if(message || postPicture || video) {
+			const data = new FormData();
+			data.append("posterId", userData._id);
+			data.append("message", message);
+			if(file) data.append("file", file)
+			data.append("video", video) 
 
+			await dispatch(addPosts(data));
+			dispatch(getPosts());
+			cancelPost();
+		}
+		else {
+			alert("Veuillez entrer un message avant de valider.");
+		}
 	}
 
 	const cancelPost = () => {
@@ -56,6 +94,33 @@ const NewPostForm = () => {
 								onChange={(e) => setMessage(e.target.value)} 
 								value={message} >
 						</textarea>
+						{(message || postPicture || video.length > 20) &&
+							<li className="card-container">
+								<div className="card-left">
+									<img src={userData.picture} alt={userData.pseudo} />
+								</div>
+								<div className="card-right">
+									<div className="card-header">
+										<div className="pseudo">
+											<h3>{userData.pseudo}</h3>
+										</div>
+										<span>{timestampParser(Date.now())}</span>
+									</div>
+									<div className="content">
+										<p>{message}</p>
+										<img src={postPicture} alt="" />
+										{video && 
+											<iframe src={video} 
+													frameborder="0"
+													title="video du post"
+													allow="fullscreen"
+													 >
+											</iframe>
+										}
+									</div>
+								</div>
+							</li>
+						}
 						<div className="footer-form">
 							<div className="icon">
 								{isEmpty(video) &&
@@ -73,6 +138,8 @@ const NewPostForm = () => {
 									<button onClick={() => setVideo("")} >Supprimer vidéo</button>
 								}
 							</div>
+							{!isEmpty(errors.format) && <p>{errors.format}</p>}
+							{!isEmpty(errors.maxSize) && <p>{errors.maxSize}</p>}
 							<div className="btn-send">
 								{(message || file || postPicture || video.length > 20) &&
 									<button cl	assName="cancel" onClick={cancelPost}>Annuler message</button>

@@ -29,8 +29,8 @@ function Log({signin, signup}) {
 		<div className="connection-form">
 			<div className="form-container">
 				<ul>
-					<li onClick={handleForms} id="register" className={signUpForm && "active-btn"} >S'inscrire</li>
-					<li onClick={handleForms} id="login" className={signInForm && "active-btn"} >Se connecter</li>
+					<li onClick={handleForms} id="register" className={signUpForm ? "active-btn" : undefined} >S'inscrire</li>
+					<li onClick={handleForms} id="login" className={signInForm ? "active-btn" : undefined} >Se connecter</li>
 				</ul>
 				{signUpForm && <SignUpForm/>}
 				{signInForm && <SignInForm/>}

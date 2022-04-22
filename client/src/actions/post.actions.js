@@ -2,6 +2,8 @@ import axios from "axios";
 
 // Posts 
 export const GET_POSTS = "GET_POSTS";
+export const GET_ALL_POSTS = "GET_ALL_POSTS";
+export const ADD_POSTS = "ADD_POSTS";
 export const LIKE_POST = "LIKE_POST";
 export const UNLIKE_POST = "UNLIKE_POST";
 export const UPDATE_POST = "UPDATE_POST";
@@ -12,6 +14,12 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
+// Trends
+export const GET_TRENDS = "GET_TRENDS";
+
+// Errors
+export const GET_POST_ERRORS = "GET_POST_ERRORS";
+
 export const getPosts = (num) => {
 	return (dispatch) => {
 		return axios
@@ -19,10 +27,27 @@ export const getPosts = (num) => {
 			.then((res) => {
 				const array = res.data.slice(0, num)
 				dispatch({ type: GET_POSTS, payload: array })
+				dispatch({ type: GET_ALL_POSTS, payload: res.data })
 			})
 			.catch((err) => console.log(err))
 	}
 }
+
+export const addPosts = (data) => {
+	return (dispatch) => {
+		return axios
+			.post(`${process.env.REACT_APP_API_URL}/api/post`, data)
+			.then((res) => {
+				if(res.data.errors) {
+					dispatch({type: GET_POST_ERRORS, payload: res.data.errors})
+				} else {
+					dispatch({ type: GET_POST_ERRORS, payload: ""})
+				}
+			})
+			.catch((err) => console.log(err))
+	}
+}
+		
 
 export const likePost = (postId, userId) => {
 	return (dispatch) => {
@@ -120,3 +145,8 @@ export const deleteComment = (postId, commentId) => {
 	}
 }
 
+export const getTrends = (sortedArray) => {
+	return (dispatch) => {
+		dispatch({type: GET_TRENDS, payload: sortedArray})
+	}
+}
