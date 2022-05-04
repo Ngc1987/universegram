@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server",
-	"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "axios": "^0.26.1",
     "bcrypt": "^5.0.1",
-    "cookie-parser": "^1.4.6",
+    "cookie-parser": "1.4.6",
     "cors": "^2.8.5",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.10",
