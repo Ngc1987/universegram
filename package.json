@@ -1,7 +1,7 @@
 {
   "name": "universegram",
   "version": "1.0.2",
-  "description": "Talk and share with people all around the universe",
+  "description": "Talk and share with people all around the universe !",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server",
