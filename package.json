@@ -1,7 +1,8 @@
 {
   "name": "universegram",
-  "version": "1.0.0",
-  "description": "universegram",
+  "version": "1.0.1",
+  "description": "Talk and share with people all around the universe",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server",
 	"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build"
