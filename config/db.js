@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-// import mongoose from ("mongoose")
+require("dotenv").config({ path: "./.env" });
 
 mongoose.connect("mongodb+srv://" + process.env.DB_USER_PASS + "@cluster0.amalb.mongodb.net/universegram")
 	.then(() => console.log(`Connected to MongoDB`))
