@@ -38,11 +38,11 @@ const Card = ({ post }) => {
 	}
 
 	const glow = (e) => {
-		console.log(e)
-		const rect = e.getBoundingClientRect();
+		// console.log(e)
+		// const rect = e.getBoundingClientRect();
 
-		e.target.style.setProperty("--x", e.clientX - rect.left);
-		e.target.style.setProperty("--y", e.clientY - rect.top);
+		// e.target.style.setProperty("--x", e.clientX - rect.left);
+		// e.target.style.setProperty("--y", e.clientY - rect.top);
 	}
 
 	return (
