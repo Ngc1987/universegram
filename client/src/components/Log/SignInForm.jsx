@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 /**
@@ -7,6 +8,8 @@ import axios from "axios";
  * @description Component SignIn form, is the form to connect the user
  */
 const SignInForm = () => {
+
+	const navigate = useNavigate();
 
 	// States to take the inputs values
 	const [email, setEmail] = useState("");
@@ -35,10 +38,9 @@ const SignInForm = () => {
 				if (res.data.errors) {
 					emailError.innerHTML = res.data.errors.email;
 					passwordError.innerHTML = res.data.errors.password;
-				} else {
-					
-					window.location = "/";
 				}
+				navigate("/")
+				
 			})
 			.catch((err) => {
 				console.log(err + "C'est chelou");
