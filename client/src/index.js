@@ -13,7 +13,7 @@ import { getUsers } from "./actions/users.actions";
 import { getPosts } from "./actions/post.actions";
 
 const store = createStore(
-	rootReducer, composeWithDevTools(applyMiddleware(thunk, logger))
+	rootReducer, composeWithDevTools(applyMiddleware(thunk))
 );
 
 store.dispatch(getUsers());
