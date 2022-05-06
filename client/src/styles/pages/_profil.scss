@@ -1,7 +1,7 @@
 // @import "../settings";
 
 .profil-page {
-  margin: 80px auto 0;
+  margin: 130px auto 0;
   max-width: 1200px;
 
   .icons {
@@ -213,6 +213,11 @@
         border-radius: 20px 20px 6px 20px;
         padding: 10px 20px;
         font-size: 1.1rem;
+		background-color: #120a524a;
+		font-size: 1.3rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
       }
       textarea {
         width: 100%;

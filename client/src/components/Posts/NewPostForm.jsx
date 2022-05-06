@@ -5,7 +5,7 @@ import { addPosts, getPosts } from "../../actions/post.actions";
 import { isEmpty } from '../../utils/isEmpty';
 import { timestampParser } from "../../utils/timestampParser";
 
-const NewPostForm = ({ userData}) => {
+const NewPostForm = () => {
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [message, setMessage] = useState("");
@@ -13,7 +13,7 @@ const NewPostForm = ({ userData}) => {
 	const [video, setVideo] = useState("");
 	const [file, setFile] = useState(null);
 
-	// const userData = useSelector((state) => state.userReducer);
+	const userData = useSelector((state) => state.userReducer);
 	const errors = useSelector((state) => state.errorsReducer.postErrors);
 
 	const dispatch = useDispatch();
@@ -145,7 +145,7 @@ const NewPostForm = ({ userData}) => {
 							{!isEmpty(errors.maxSize) && <p>{errors.maxSize}</p>}
 							<div className="btn-send">
 								{(message || file || postPicture || video.length > 20) &&
-									<button cl	assName="cancel" onClick={cancelPost}>Annuler message</button>
+									<button className="cancel" onClick={cancelPost}>Annuler message</button>
 								
 								}
 								<button className="send" onClick={handlePost} >Envoyer</button>

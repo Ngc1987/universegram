@@ -15,7 +15,7 @@ const Logout = () => {
 	// Remove the cookie on the front-side
 	const removeCookie= (key) => {
 		if(window !== "undefined") {
-			cookie.remove(key,{expire: 1})
+			cookie.remove(key)
 		}
 	}
 
