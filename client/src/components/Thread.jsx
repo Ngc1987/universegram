@@ -21,8 +21,8 @@ const Thread = () => {
 			setCount(count + 5)
 		}
 
-		// window.addEventListener("scroll", loadMore);
-		// return () => window.removeEventListener("scroll", loadMore)
+		window.addEventListener("scroll", loadMore, { passive: true });
+		return () => window.removeEventListener("scroll", loadMore, { passive: true })
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [loadPosts]);
 
