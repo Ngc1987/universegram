@@ -5,7 +5,7 @@ import { addPosts, getPosts } from "../../actions/post.actions";
 import { isEmpty } from '../../utils/isEmpty';
 import { timestampParser } from "../../utils/timestampParser";
 
-const NewPostForm = () => {
+const NewPostForm = ({ userData}) => {
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [message, setMessage] = useState("");
@@ -13,10 +13,13 @@ const NewPostForm = () => {
 	const [video, setVideo] = useState("");
 	const [file, setFile] = useState(null);
 
-	const userData = useSelector((state) => state.userReducer);
+	// const userData = useSelector((state) => state.userReducer);
 	const errors = useSelector((state) => state.errorsReducer.postErrors);
 
 	const dispatch = useDispatch();
+
+	console.log(isLoading, userData)
+
 	useEffect(() => {
 		if (!isEmpty(userData)) {
 			setIsLoading(false);

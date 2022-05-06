@@ -1,43 +1,66 @@
-.connection-from {
-  border: 2px solid $color-1;
-  width: 400px;
-  margin: 35px auto 0;
-  padding: 20px 0;
-  user-select: none;
-  text-align: center;
+.connection-form {
+	background: $color-4;
+	border-radius: 20px;
+	padding: 20px;
+	margin-top: 150px;
+	width: 80%;
+	z-index: 100;
 
-  h3 {
-    padding: 10px 0 15px;
-  }
+	@media screen and(min-width: 550px) {
+		width:440px;
+	}
+	
+	ul {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+		margin-bottom: 18px;
 
-  ul {
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
+		li {
+			cursor: pointer;
+			border-radius: 20px;
+			padding: 12px 14px;
+			transition: .2s;
+			margin: 0 8px;
+		}
 
-    li {
-      background: $color-2;
-      color: $white;
-      width: 130px;
-      padding: 10px 0;
-      border-radius: 18px;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 3px 3px 1px rgba(51, 51, 51, 0.418);
+		.active-btn {
+			background: $color-1;
 
-      &:hover {
-        background: $color-1;
-      }
-    }
-  }
-  .active-btn {
-    background: $color-1;
-  }
-  form {
-    width: 400px;
-    margin: 10px auto 0;
-    padding: 20px;
+			&:hover {
+				background: $color-2;
+			}
+		}
 
-  }
+		li:not(.active-btn) {
+			&:hover {
+				transform: translateX(3px)
+			}
+		}
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		input {
+			padding: 10px 14px;
+			margin: 0;
+			font-size: 1.2rem;
+			font-family: $font-2;
+			border-radius: 20px;
+			width: 100%;
+
+			&:focus {
+				box-shadow: 0 0 3px rgba(51, 51, 51, 0.2);
+			}
+		}
+
+		input[type=submit] {
+			padding: 14px 14px;
+			border-radius: 20px;
+		}
+	}
 }
-

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
  */
 const Logout = () => {
 
-	const navigateTo = useNavigate();
+	const navigate = useNavigate();
 
 	// Remove the cookie on the front-side
 	const removeCookie= (key) => {
@@ -29,8 +29,8 @@ const Logout = () => {
 		.then(() => removeCookie("jwt"))
 		.catch((err) => console.log(err))
 
-		window.location = "/";
-		// navigateTo("/profil");
+		// window.location = "/";
+		navigate("/");
 	}
 
 	return (
