@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { getUser } from "../../actions/user.actions";
 
 
 /**
@@ -10,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 const SignInForm = () => {
 
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	// States to take the inputs values
 	const [email, setEmail] = useState("");
@@ -38,8 +41,10 @@ const SignInForm = () => {
 				if (res.data.errors) {
 					emailError.innerHTML = res.data.errors.email;
 					passwordError.innerHTML = res.data.errors.password;
+				} else {
+					dispatch(getUser(res.data.user));
+					navigate("/home")
 				}
-				navigate("/")
 				
 			})
 			.catch((err) => {
@@ -50,7 +55,6 @@ const SignInForm = () => {
 	return (
 		<form action="" onSubmit={handleLogin} id="sign-up-form" >
 			<label htmlFor="email">Email</label>
-			<br />
 			<input type="text"
 				name="email"
 				id="email"
@@ -60,14 +64,12 @@ const SignInForm = () => {
 			<br />
 
 			<label htmlFor="password">Mot de passe</label>
-			<br />
 			<input type="password"
 				name="password"
 				id="password"
 				onChange={(e) => setPassword(e.target.value)}
 				value={password} />
 			<div className="password error"></div>
-			<br />
 			<br />
 
 			<input type="submit" value="Se connecter" />

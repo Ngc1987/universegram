@@ -39,7 +39,7 @@ const Navbar = () => {
 					<ul>
 						<li></li>
 						<li>
-							<NavLink to="/profil">
+							<NavLink to="/">
 								<img src="./img/icons/login.svg" alt="login" />
 							</NavLink>
 						</li>

@@ -21,7 +21,7 @@ const Trends = () => {
 			let sortedArray = postsArray.sort((a, b) => {
 				return b.likers.length - a.likers.length
 			})
-			console.log(sortedArray)
+			// console.log(sortedArray)
 			sortedArray.length = 3;
 			dispatch(getTrends(sortedArray))
 		}

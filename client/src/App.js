@@ -19,11 +19,11 @@ function App() {
 				withCredentials: true
 			})
 			.then((res) => {
-				console.log(res)
+				console.log(res);
 				setUid(res.data);
 			})
 			.catch((err) => {
-				console.log("No token")
+				console.log("No token front")
 			})
 
 		}

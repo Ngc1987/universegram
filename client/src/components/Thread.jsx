@@ -21,14 +21,14 @@ const Thread = () => {
 			setCount(count + 5)
 		}
 
-		window.addEventListener("scroll", loadMore);
-		return () => window.removeEventListener("scroll", loadMore)
+		// window.addEventListener("scroll", loadMore);
+		// return () => window.removeEventListener("scroll", loadMore)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [loadPosts]);
 
 	
 	const loadMore = () => {
-		console.log(window.innerHeight, document.documentElement.scrollTop, document.scrollingElement.scrollHeight)
+		// console.log(window.innerHeight, document.documentElement.scrollTop, document.scrollingElement.scrollHeight)
 		if(window.innerHeight + document.documentElement.scrollTop + 1 > document.scrollingElement.scrollHeight) {
 			setLoadPosts(true);
 			// setCount(count + 5);
