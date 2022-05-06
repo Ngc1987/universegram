@@ -43,8 +43,9 @@ nav {
         font-family: $font-3;
       }
       img {
-        height: 26px;
-        width: 26px;
+        height: 42px;
+        width: 42px;
+		filter: drop-shadow(2px 2px 5px #fff);
       }
     }
     
@@ -72,8 +73,8 @@ nav {
       li {
         
         img {
-          height: 24px;
-          width: 24px;
+          height: 30px;
+          width: 30px;
           cursor: pointer;
           display: grid;
           align-items: center;

@@ -46,7 +46,9 @@ const Card = ({ post }) => {
 	}
 
 	return (
-		<article className="card-container feature" key={post._id} onPointerMove={(e) => glow(e)} >
+		<article className="card-container feature" key={post._id}
+												//  onPointerMove={(e) => glow(e)} 
+												>
 			{isLoading ?
 				<i className="fas fa-spinner fa-spin" ></i>
 				:
