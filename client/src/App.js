@@ -12,8 +12,8 @@ function App() {
 	const dispatch = useDispatch();
 
 	useEffect(()=> {
-		async function fetchUserToken() {
-			await axios({
+		function fetchUserToken() {
+			axios({
 				method: "get",
 				url: `${process.env.REACT_APP_API_URL}/jwtid`,
 				withCredentials: true
@@ -21,6 +21,7 @@ function App() {
 			.then((res) => {
 				console.log(res);
 				setUid(res.data);
+				if(uid) dispatch(getUser(uid));
 			})
 			.catch((err) => {
 				console.log("No token front")
@@ -29,7 +30,6 @@ function App() {
 		}
 		fetchUserToken();
 
-		if(uid) dispatch(getUser(uid));
 		
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [uid])

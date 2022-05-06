@@ -7,7 +7,7 @@ const LeftNav = () => {
 			<div className="icons">
 				<div className="icons-bis">
 
-					<NavLink to="/" activeclassname="active-left-nav">
+					<NavLink to="/home" activeclassname="active-left-nav">
 						<img src="./img/icons/home.svg" alt="Home logo" />
 					</NavLink>
 					<br />
@@ -18,7 +18,7 @@ const LeftNav = () => {
 					<NavLink to="/profil" activeclassname="active-left-nav">
 						<img src="./img/icons/user.svg" alt="User logo" />
 					</NavLink>
-						
+
 				</div>
 			</div>
 		</div>

@@ -33,11 +33,12 @@ const AppRouter = () => {
 		<Router>
 			<Navbar />
 			<canvas className="background"></canvas>
+			{uid && <LeftNav />}
 
 			<Routes>
 			
-				{/* <Route path="/" element={uid ? <Navigate replace to="/home" /> : } /> */}
-				<Route path="/" element={<Login />} />
+				<Route path="/" element={uid ? <Navigate replace to="/home" /> : <Login />} />
+				{/* <Route path="/" element={<Login />} /> */}
 				<Route path="/home" element={<Home />} />
 				<Route path="/profil" element={<Profile />} />
 				<Route path="/trending" element={<Trending />} />
