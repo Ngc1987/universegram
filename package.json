@@ -25,6 +25,6 @@
     "validator": "13.7.0"
   },
   "devDependencies": {
-    "multer": "^2.0.0-rc.1"
+    "multer": "2.0.0-rc.1"
   }
 }
