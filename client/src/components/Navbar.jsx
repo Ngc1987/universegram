@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { UidContext } from "./AppContext";
 import Logout from "./Log/Logout";
+import useWindowSize from "../hooks/useWindowSize";
 
 /**
  * @component
@@ -12,40 +13,37 @@ const Navbar = () => {
 
 	const uid = useContext(UidContext);
 	const userData = useSelector((state) => state.userReducer);
+	const dimensions = useWindowSize();
 
 
 	return (
 		<nav>
-			<div className="nav-container">
 				<div className="logo">
-					<NavLink to="/">
+					<NavLink to="/home">
 						<div className="logo">
-							<img src="./img/icons/galaxy.svg" alt="" />
+							<img src="/img/icons/galaxy.svg" alt="" />
 							<h3>UniverseGram</h3>
 						</div>
 					</NavLink>
 				</div>
 				{uid ?
-					<ul>
-						<li></li>
-						<li className="welcome">
-							<NavLink to="/profil">
+					<>
+						<div className="welcome">
+							<NavLink to={`/profil/${uid}`}>
+							{dimensions.width > 550  &&
 								<h5>Bienvenue {userData.pseudo}</h5>
+							}
 							</NavLink>
-						</li>
-						<Logout/>
-					</ul>
+							<Logout/>
+						</div>
+					</>
 					:
-					<ul>
-						<li></li>
-						<li>
-							<NavLink to="/">
-								<img src="./img/icons/login.svg" alt="login" />
-							</NavLink>
-						</li>
-					</ul>
+					<div className="welcome">
+						<NavLink to="/">
+							<img src="/img/icons/login.svg" alt="login" />
+						</NavLink>
+					</div>
 				}
-			</div>
 		</nav>
 	)
 }

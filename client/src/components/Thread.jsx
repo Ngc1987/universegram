@@ -43,7 +43,7 @@ const Thread = () => {
 				{!isEmpty(posts[0]) &&
 				posts.map((post) => {
 					return (
-						<Card post={post} key={post._id} />
+						<Card post={post} key={post._id} page="home" />
 					)
 				})}
 			

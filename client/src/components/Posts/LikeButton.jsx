@@ -31,16 +31,16 @@ const LikeButton = ({post}) => {
 	return (
 		<div className="like-container">
 			{uid === null && 
-				<Popup trigger={<img src={process.env.PUBLIC_URL + "img/icons/heart.svg"} alt="like"/>} position={["bottom center", "bottom right", "bottom left"]} closeOnDocumentClick >
+				<Popup trigger={<img src={process.env.PUBLIC_URL + "/img/icons/heart.svg"} alt="like"/>} position={["bottom center", "bottom right", "bottom left"]} closeOnDocumentClick >
 					<div>Connectez-vous pour aimer un post !</div>
 				</Popup>
 			}
 
 			{uid && !liked && 
-				<img src={process.env.PUBLIC_URL + "img/icons/heart.svg"} alt="like" onClick={like} />
+				<img src={process.env.PUBLIC_URL + "/img/icons/heart.svg"} alt="like" onClick={like} />
 			}
 			{uid && liked && 
-				<img src={process.env.PUBLIC_URL + "img/icons/heart-filled.svg"} alt="unlike" onClick={unlike} />
+				<img src={process.env.PUBLIC_URL + "/img/icons/heart-filled.svg"} alt="unlike" onClick={unlike} />
 			}
 			<span>{post.likers.length}</span>
 		</div>

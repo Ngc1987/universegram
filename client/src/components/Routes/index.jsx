@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import Home from "../../pages/Home";
 import Profile from "../../pages/Profile";
@@ -16,37 +16,41 @@ import { UidContext } from './../AppContext';
  * @component
  * @description Component which contains all the routes of the application
  */
-const AppRouter = () => {
+const AppRouter = ({setUid}) => {
 
 	const uid = useContext(UidContext);
-
 	console.log(uid)
 
+	
 	window.onload = function () {
 		Particles.init({
 			selector: '.background',
 			color: '#fff',
 		});
 	};
-
+	
+	
 	return (
+		<div className="App">
+
 		<Router>
-			<Navbar />
+			<Navbar setUid={setUid} />
 			<canvas className="background"></canvas>
-			{uid && <LeftNav />}
+			{/* {uid && <LeftNav />} */}
 
 			<Routes>
 			
-				<Route path="/" element={uid ? <Navigate replace to="/home" /> : <Login />} />
+				<Route path="/" element={<Login />}/>
 				{/* <Route path="/" element={<Login />} /> */}
 				<Route path="/home" element={<Home />} />
-				<Route path="/profil" element={<Profile />} />
+				<Route path="/profil/:id" element={<Profile />} />
 				<Route path="/trending" element={<Trending />} />
 				<Route path="*" element={<Navigate replace to={uid ? "/home" : "/"} />} />
 			
 			
 			</Routes>
 		</Router>
+		</div>
 	)
 }
 

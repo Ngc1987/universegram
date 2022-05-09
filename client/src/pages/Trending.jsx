@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { isEmpty } from '../utils/isEmpty';
 import Card from "../components/Posts/Card";
 import Trends from "../components/Trends";
+import LeftNav from "../components/LeftNav";
 
 /**
  * @component
@@ -16,6 +17,7 @@ const Trending = () => {
 
 	return (
 		<div className="trending-page">
+			<LeftNav />
 			<div className="main">
 				<ul>
 					{!isEmpty(trendList[0]) && trendList.map((post) => <Card post={post} key={post._id} />)}

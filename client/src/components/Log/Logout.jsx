@@ -2,6 +2,8 @@ import React from 'react';
 import axios from "axios";
 import cookie from "js-cookie";
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UidContext } from './../AppContext';
 ;
 
 /**
@@ -11,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 const Logout = () => {
 
 	const navigate = useNavigate();
+	const uid = useContext(UidContext)
 
 	// Remove the cookie on the front-side
 	const removeCookie= (key) => {
@@ -33,10 +36,12 @@ const Logout = () => {
 		navigate("/");
 	}
 
+	console.log(uid)
+
 	return (
-		<li onClick={logout} >
-			<img src="./img/icons/logout.svg" alt="logout" />
-		</li>
+		<div className="logout" onClick={logout} >
+			<img src="/img/icons/logout.svg" alt="logout" />
+		</div>
 	)
 }
 
