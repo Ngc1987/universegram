@@ -4,7 +4,8 @@ import { UidContext } from "../components/AppContext";
 import UpdateProfile from '../components/Profile/UpdateProfile';
 import Card from './../components/Posts/Card';
 import { useSelector } from 'react-redux';
-
+import LeftNav from "../components/LeftNav";
+import { useParams } from 'react-router-dom';
 
 /**
  * @component
@@ -15,19 +16,28 @@ const Profile = () => {
 	const posts = useSelector((state) => state.postReducer);
 	const uid = useContext(UidContext);
 
+	
+	const [userId, setUserId] = useState(null);
+	
+	const {id} = useParams();
+
+	// const userId = uid2.id
+
+
 	return (
 		<div className="profil-page">
+			<LeftNav/>
 		{uid ? 
-		<>
-			<UpdateProfile/>
-			{posts.map((post) => {
-				if(post.posterId === uid) {
-					return (
-						<Card post={post} key={post._id} />
-					)
-				} return null
-			})}
-		</>
+			<>
+				<UpdateProfile/>
+				{posts.map((post) => {
+					if (post.posterId === id) {
+						return (
+							<Card post={post} key={post._id} page="profil"/>
+						)
+					} return null
+				})}
+			</>
 			:
 
 			<div className="log-container">

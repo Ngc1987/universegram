@@ -2,11 +2,22 @@ nav {
   position: fixed;
   width: 100%;
   height: 75px;
-  border-radius: 6px;
-  box-shadow: 18px 1px 0px $color-1, 22px 4px 0px 0px $shadow;
+//   border-radius: 6px;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.438), 
+				// 0px 0px 10px rgba(255, 255, 255, 0.438), 
+				// 0px 0px 15px rgba(255, 255, 255, 0.438), 
+  				0px 0px 10px rgba(3, 16, 58, 0.987),
+  				0px 0px 10px rgba(3, 16, 58, 0.987),
+  				0px 0px 15px rgba(3, 16, 58, 0.987);
   z-index: 10;
   top: 0;
   background: rgba(3, 16, 58, 0.987);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+//   margin: 0 50px;
+//   max-width: 1190px;
 
   @media screen and(max-width: 1251px) {
     padding: 0 20px;
@@ -24,22 +35,24 @@ nav {
     z-index: -8;
   }
 
-  .nav-container {
-    display: flex;
-    width: 100%;
-    max-width: 1190px;
-    margin: 0 auto;
-    justify-content: space-between;
-    height: 100%;
-    align-items: center;
-    
     .logo {
       display: flex;
+	  flex-direction: row;
+	  justify-content: flex-start;
       align-items: center;
-      
+	  margin-left: 20px;
+	  
+	  @media screen and(min-width: 768px) {
+		  margin-left: 50px;
+	  }
+	  
+	  a {
+		  margin-left: -30px;
+		}
+		
       h3 {
-        transform: translate(15px, 2px);
-        font-size: 1.5rem;
+		  transform: translate(15px, 2px);
+		  font-size: 1.5rem;
         font-family: $font-3;
       }
       img {
@@ -49,28 +62,29 @@ nav {
       }
     }
     
-    ul {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 35%;
-      justify-content: space-between;
-      font-size: 1.2rem;
+    .welcome {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.2rem;
+		margin-right: 20px;
+		
+		@media screen and(min-width: 768px) {
+			margin-right: 50px;
+		}
+		
+		h5 {
+			font-family: $font-3;
+			font-size: 1.1rem;
+			transform: translateY(2px);
+			
+			@media screen and(min-width: 768px) {
+				font-size: 1.4rem;
+			}
+		}
+	}
       
-      .welcome {
-        transform: translateY(2px);
-
-        @media screen and(max-width: 590px) {
-          display: none;
-        }
-        
-        h5 {
-          font-family: $font-3;
-		  font-size: 1.5rem;
-        }
-      }
-      
-      li {
+      .logout {
         
         img {
           height: 30px;
@@ -80,9 +94,10 @@ nav {
           align-items: center;
           justify-items: center;
           height: 100%;
+		  margin-left: 20px;
         }
       }
-    }
+    
   }
-}
+
 

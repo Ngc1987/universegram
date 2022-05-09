@@ -23,7 +23,7 @@ const Home = () => {
 	if(!uid) navigate("/")
 	return (
 		<section className="home" >
-			{/* <LeftNav/> */}
+			<LeftNav/>
 			<div className="main">
 				<div className="home-header">
 					<NewPostForm userData={userData}/>

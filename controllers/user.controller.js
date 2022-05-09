@@ -18,13 +18,13 @@ module.exports.userInfo = (req, res) => {
 }
 
 
-module.exports.updateUser = async (req, res) => {
+module.exports.updateUser =  (req, res) => {
 	if (!ObjectId.isValid(req.params.id)) {
 		return res.status(400).send("Invalid id: " + req.params.id);
 	}
 
 	try {
-		await UserModel.findOneAndUpdate(
+		 UserModel.findOneAndUpdate(
 			{ _id: req.params.id },
 			{
 				$set: {

@@ -8,8 +8,9 @@ import { useDispatch } from 'react-redux';
 import { getPosts, updatePost } from "../../actions/post.actions";
 import DeleteCard from "./DeleteCard";
 import CardComment from './CardComment';
+import { Link } from "react-router-dom";
 
-const Card = ({ post }) => {
+const Card = ({ post, page }) => {
 
 	// Fetch the necessary redux states
 	const usersData = useSelector((state) => state.usersReducer);
@@ -46,7 +47,7 @@ const Card = ({ post }) => {
 	}
 
 	return (
-		<article className="card-container feature" key={post._id}
+		<article className={`card-container feature ${page === "home" ? "homePost" : "profilPost" }`} key={post._id}
 												//  onPointerMove={(e) => glow(e)} 
 												>
 			{isLoading ?
@@ -54,11 +55,13 @@ const Card = ({ post }) => {
 				:
 				<>
 					<div className="card-left">
+						<Link to={`/profil/${post.posterId}`} >
+
 						<img src={
 							!isEmpty(usersData[0]) &&
 							usersData.map((user) => {
 								if (user._id === post.posterId) {
-									return user.picture
+									return user.picture.slice(1)
 								} else {
 									return null;
 								}
@@ -73,6 +76,7 @@ const Card = ({ post }) => {
 								}
 
 							})} />
+					</Link>
 					</div>
 					<div className="card-right">
 						<div className="card-header">
@@ -103,7 +107,7 @@ const Card = ({ post }) => {
 							</div>
 						}
 						{/* <p>{post.message}</p> */}
-						{post.picture && <img src={post.picture} alt="post-pic" className="card-pic" />}
+						{post.picture && <img src={post.picture.slice(1)} alt="post-pic" className="card-pic" />}
 						{post.video && <iframe width={500} height={300} src={post.video} frameBorder="0" allow="fullscreen" title={post._id} ></iframe>}
 						{userData._id === post.posterId &&
 							<div className="button-container">
