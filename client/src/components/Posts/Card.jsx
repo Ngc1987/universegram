@@ -47,7 +47,7 @@ const Card = ({ post, page }) => {
 	}
 
 	return (
-		<article className={`card-container feature ${page === "home" ? "homePost" : "profilPost" }`} key={post._id}
+		<article className={`card-container feature ${page === "home" ? "homePost" : page === "profil" ? "profilPost" : "trendPost" }`} key={post._id}
 												//  onPointerMove={(e) => glow(e)} 
 												>
 			{isLoading ?
@@ -75,7 +75,7 @@ const Card = ({ post, page }) => {
 									return null
 								}
 
-							})} />
+							}).join("") } />
 					</Link>
 					</div>
 					<div className="card-right">

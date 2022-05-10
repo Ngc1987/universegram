@@ -9,7 +9,7 @@ const LikeButton = ({post}) => {
 
 	const [liked, setLiked] = useState(false);
 
-	const uid = useContext(UidContext);
+	const {uid} = useContext(UidContext);
 
 	const dispatch = useDispatch();
 

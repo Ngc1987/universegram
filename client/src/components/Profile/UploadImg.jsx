@@ -8,7 +8,7 @@ import { UidContext } from './../AppContext';
 const UploadImg = () => {
 
 	const { id } = useParams();
-	const uid = useContext(UidContext)
+	const {uid} = useContext(UidContext)
 
 	const [file, setFile] = useState(null);
 

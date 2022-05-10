@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
 const Profile = () => {
 	
 	const posts = useSelector((state) => state.postReducer);
-	const uid = useContext(UidContext);
+	const {uid} = useContext(UidContext);
 
 	
 	const [userId, setUserId] = useState(null);
@@ -26,7 +26,7 @@ const Profile = () => {
 
 	return (
 		<div className="profil-page">
-			<LeftNav/>
+			{/* <LeftNav/> */}
 		{uid ? 
 			<>
 				<UpdateProfile/>

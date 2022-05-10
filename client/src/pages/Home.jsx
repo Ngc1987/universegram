@@ -16,28 +16,28 @@ import { useSelector } from 'react-redux';
  */
 const Home = () => {
 
-	const uid = useContext(UidContext);
+	const {uid} = useContext(UidContext);
 	const navigate = useNavigate();
 	const userData = useSelector((state) => state.userReducer);
 
 	if(!uid) navigate("/")
 	return (
 		<section className="home" >
-			<LeftNav/>
+			{/* <LeftNav/> */}
 			<div className="main">
 				<div className="home-header">
 					<NewPostForm userData={userData}/>
 				</div>
 				<Thread />
 			</div>
-			<div className="right-side">
+			{/* <div className="right-side"> */}
 				<div className="right-side-container">
 					{/* <div className="wrapper"> */}
 					<Trends />
 					{uid && <FriendsHint />}
 					{/* </div> */}
 				</div>
-			</div>
+			{/* </div> */}
 		</section>
 	)
 }

@@ -10,10 +10,10 @@ import { UidContext } from './../AppContext';
  * @component
  * @description It's the Logout component
  */
-const Logout = () => {
+const Logout = ({type}) => {
 
 	const navigate = useNavigate();
-	const uid = useContext(UidContext)
+	const {uid, setUid} = useContext(UidContext)
 
 	// Remove the cookie on the front-side
 	const removeCookie= (key) => {
@@ -29,19 +29,27 @@ const Logout = () => {
 			url: `${process.env.REACT_APP_API_URL}/api/user/logout`,
 			withCredentials: true,
 		})
-		.then(() => removeCookie("jwt"))
+		.then(() => {
+			removeCookie("jwt");
+			setUid(null)
+			navigate("/");
+		})
+		// .then(() => setUid(null), console.log(uid))
 		.catch((err) => console.log(err))
 
 		// window.location = "/";
-		navigate("/");
 	}
 
-	console.log(uid)
+	// console.log(uid)
 
 	return (
-		<div className="logout" onClick={logout} >
-			<img src="/img/icons/logout.svg" alt="logout" />
-		</div>
+		type === "mobileNav" ?
+			<p onClick={logout} >Déconnexion</p>
+			:
+			<div className="logout" onClick={logout} >
+				<img src="/img/icons/logout.svg" alt="logout" />
+			</div>
+		
 	)
 }
 

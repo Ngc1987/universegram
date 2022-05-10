@@ -36,7 +36,7 @@ function App() {
 
 	
 	return (
-		<UidContext.Provider value={uid} >
+		<UidContext.Provider value={{uid, setUid}} >
 			<Routes/>
 		</UidContext.Provider>
 	);

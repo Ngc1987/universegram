@@ -5,7 +5,7 @@ import { UidContext } from './AppContext';
 
 const LeftNav = () => {
 
-	const uid = useContext(UidContext)
+	const {uid} = useContext(UidContext)
 
 	return (
 		<div className="left-nav-container">

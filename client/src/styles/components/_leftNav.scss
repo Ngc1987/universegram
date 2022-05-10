@@ -1,14 +1,15 @@
 .left-nav-container {
-  position: fixed;
-  left: 5px;
-  margin-right: 20px;
+  position: absolute;
+  top: 90px;
+  left: -5px;
+//   margin-right: 20px;
 
   .icons {
     position: fixed;
     z-index: 10;
 
-    @media screen and(max-width: 590px) {
-      margin: 2px 0 0 -9px;
+    @media screen and(min-width: 1300px) {
+      left: 1.5%;
     }
 
     .icons-bis {
@@ -17,7 +18,7 @@
 
       a {
         transition: 0.1s;
-        display: inline-block;
+        // display: inline-block;
 		filter: drop-shadow(0 0 2px aqua);
 
         &:before {

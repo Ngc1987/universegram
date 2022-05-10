@@ -1,4 +1,4 @@
-nav {
+.navbar {
   position: fixed;
   width: 100%;
   height: 75px;
@@ -34,6 +34,31 @@ nav {
     background: rgba(255, 255, 255, 0.438);
     z-index: -8;
   }
+  	.search {
+		width: 200px;
+		height: 50px;
+		overflow: hidden;
+
+		ul {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+
+			li {
+				width: 100%;
+				height: 30px;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+
+				img {
+					width: 26px;
+					height: 26px;
+					border-radius: 50%;
+				}
+			}
+		}
+	}
 
     .logo {
       display: flex;
@@ -42,7 +67,7 @@ nav {
       align-items: center;
 	  margin-left: 20px;
 	  
-	  @media screen and(min-width: 768px) {
+	  @media screen and(min-width: 990px) {
 		  margin-left: 50px;
 	  }
 	  
@@ -69,7 +94,7 @@ nav {
 		font-size: 1.2rem;
 		margin-right: 20px;
 		
-		@media screen and(min-width: 768px) {
+		@media screen and(min-width: 990px) {
 			margin-right: 50px;
 		}
 		

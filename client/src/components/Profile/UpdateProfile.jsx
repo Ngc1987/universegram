@@ -12,7 +12,7 @@ import { UidContext } from './../AppContext';
 const UpdateProfile = () => {
 
 	const { id } = useParams();
-	const uid = useContext(UidContext)
+	const {uid} = useContext(UidContext)
 
 	const dispatch = useDispatch();
 	const userData = useSelector((state) => state.userReducer);
@@ -70,13 +70,20 @@ const UpdateProfile = () => {
 						)}
 						{updateForm && (
 							<>
-								<textarea
+								{uid === user._id ?
+								<>
+									<textarea
 									type="text"
 									defaultValue={user.bio}
 									onChange={(e) => setBio(e.target.value)}
-								></textarea>
+									></textarea>
 
-								<button onClick={handleUpdateBio}>Valider modifications</button>
+									<button onClick={handleUpdateBio}>Valider modifications</button>
+								</>
+								:
+									<p>{user.bio}</p>
+								}
+								
 							</>
 						)}
 					</div>
@@ -92,16 +99,17 @@ const UpdateProfile = () => {
 				<h3>Abonnements</h3>
 				<span className="cross" onClick={() => setFollowingPopup(false)} >&#10005;</span>
 				<ul className="popup-ul" >
-					{usersData.map((user) => {
+					{
+						usersData.map((otherUser) => {
 
 						for (let i = 0; i < user.following.length; i++) {
-							if (user._id === user.following[i]) {
+							if (otherUser._id === user.following[i]) {
 								return (
-									<li className="popup-ul-li" key={user._id} >
-										<img src={user.picture.slice(1)} alt={`${user.pseudo}-pic`} />
-										<h4>{user.pseudo}</h4>
+									<li className="popup-ul-li" key={otherUser._id} >
+										<img src={otherUser.picture.slice(1)} alt={`${otherUser.pseudo}-pic`} />
+										<h4>{otherUser.pseudo}</h4>
 										<div className="follow-handler">
-											<FollowHandler idToFollowOrUnfollow={user._id} type="suggestion" />
+											<FollowHandler idToFollowOrUnfollow={otherUser._id} type="suggestion" />
 										</div>
 									</li>
 								)
@@ -120,16 +128,16 @@ const UpdateProfile = () => {
 				<h3>Abonnés</h3>
 				<span className="cross" onClick={() => setFollowersPopup(false)} >&#10005;</span>
 				<ul className="popup-ul" >
-					{usersData.map((user) => {
+					{usersData.map((otherUser) => {
 
-						for (let i = 0; i < userData.followers.length; i++) {
-							if (user._id === userData.followers[i]) {
+						for (let i = 0; i < user.followers.length; i++) {
+							if (otherUser._id === user.followers[i]) {
 								return (
-									<li className="popup-ul-li" key={user._id} >
-										<img src={user.picture} alt={`${user.pseudo}-pic`} />
-										<h4>{user.pseudo}</h4>
+									<li className="popup-ul-li" key={otherUser._id} >
+										<img src={otherUser.picture.slice(1)} alt={`${otherUser.pseudo}-pic`} />
+										<h4>{otherUser.pseudo}</h4>
 										<div className="follow-handler">
-											<FollowHandler idToFollowOrUnfollow={user._id} type="suggestion" />
+											<FollowHandler idToFollowOrUnfollow={otherUser._id} type="suggestion" />
 										</div>
 									</li>
 								)
