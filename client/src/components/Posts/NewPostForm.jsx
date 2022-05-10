@@ -18,7 +18,7 @@ const NewPostForm = () => {
 
 	const dispatch = useDispatch();
 
-	console.log(isLoading, userData)
+	// console.log(isLoading, userData)
 
 	useEffect(() => {
 		if (!isEmpty(userData)) {

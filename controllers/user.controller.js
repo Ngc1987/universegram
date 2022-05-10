@@ -83,7 +83,7 @@ module.exports.unfollow2 = async (req, res) => {
 			(err, docs) => {
 				//Unable to make return two responses, we can tink if the first don't throw error, the second also
 				// if(!err) res.status(201).json(docs)
-				if (err) return res.status(400).json(err)
+				if (err) return res.status(401).json(err)
 			}
 		)
 	}
@@ -154,7 +154,7 @@ module.exports.unfollow = async (req, res, next) => {
 		})
 	}
 	catch (err) {
-		res.status(400).json({ error: err.message })
+		res.status(401).json({ error: err.message })
 	}
 	// console.log(req.params.id, req.body.idToFollow)
 

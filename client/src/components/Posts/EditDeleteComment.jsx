@@ -12,7 +12,7 @@ const EditDeleteComment = ({comment, postId}) => {
 
 	const dispatch = useDispatch();
 
-	const uid = useContext(UidContext);
+	const {uid} = useContext(UidContext);
 
 	const handleEdit = (e) => {
 		e.preventDefault();

@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { getUser } from "../../actions/user.actions";
+import { useContext } from 'react';
+import { UidContext } from './../AppContext';
 
 
 /**
@@ -11,12 +13,15 @@ import { getUser } from "../../actions/user.actions";
  */
 const SignInForm = () => {
 
+	const {uid, setUid} = useContext(UidContext);
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	// States to take the inputs values
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	
 
 	// Function to login the user or display the errors
 	const handleLogin = (e) => {
@@ -24,7 +29,6 @@ const SignInForm = () => {
 
 		const emailError = document.querySelector(".email.error");
 		const passwordError = document.querySelector(".password.error");
-
 
 		axios({
 			method: "post",
@@ -35,21 +39,21 @@ const SignInForm = () => {
 				password
 			}
 		})
-
-			.then((res) => {
-				console.log(res)
-				if (res.data.errors) {
-					emailError.innerHTML = res.data.errors.email;
-					passwordError.innerHTML = res.data.errors.password;
-				} else {
-					dispatch(getUser(res.data.user));
-					navigate("/home")
-				}
-				
-			})
-			.catch((err) => {
-				console.log(err + "C'est chelou");
-			})
+		.then((res) => {
+			console.log(res)
+			if (res.data.errors) {
+				emailError.innerHTML = res.data.errors.email;
+				passwordError.innerHTML = res.data.errors.password;
+			} else {
+				dispatch(getUser(res.data.user));
+				setUid(res.data.user)
+			}
+			navigate("/home")
+			
+		})
+		.catch((err) => {
+			console.log(err + "C'est chelou");
+		})
 	}
 
 	return (

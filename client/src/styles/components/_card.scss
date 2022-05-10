@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 66px 1fr;
   border: 2px solid $color-2;
-  margin: 10px;
+//   margin: 10px;
   padding: 16px;
   border-radius: 20px;
   position: relative;
@@ -424,12 +424,17 @@
 
 .homePost {
 	width: 100%;
-  margin: 8px auto;
+  	margin: 8px auto;
 }
 .profilPost {
-	width: 80%;
-	margin-left: 50px;
-	margin-right: 50px;
+	width: 90%;
+
+	@media screen and(min-width: 768px) {
+		width: 70%;
+	}
+}
+.trendPost {
+	width: 100%;
 }
 
 // .feature {

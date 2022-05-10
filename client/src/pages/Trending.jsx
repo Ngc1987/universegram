@@ -12,21 +12,22 @@ import LeftNav from "../components/LeftNav";
  */
 const Trending = () => {
 
-	const uid = useContext(UidContext);
+	const {uid} = useContext(UidContext);
 	const trendList = useSelector((state) => state.trendingsReducer)
 
 	return (
 		<div className="trending-page">
-			<LeftNav />
+			{/* <LeftNav /> */}
 			<div className="main">
-				<ul>
-					{!isEmpty(trendList[0]) && trendList.map((post) => <Card post={post} key={post._id} />)}
-				</ul>
+					{!isEmpty(trendList[0]) && trendList.map((post) => 
+
+					<Card post={post} key={post._id} page="trending"/>)}
+				
 			</div>
 
 			<div className="right-side">
 				<div className="right-side-container">
-					<Trends />
+					{/* <Trends /> */}
 				</div>
 			</div>
 		</div>
