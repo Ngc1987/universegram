@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { UidContext } from "./AppContext";
 import Logout from "./Log/Logout";
 import useWindowSize from "../hooks/useWindowSize";
@@ -17,10 +17,28 @@ const Navbar = () => {
 	const usersData = useSelector((state) => state.usersReducer);
 	const dimensions = useWindowSize();
 
-	console.log(usersData)
-
 	const [inputValue, setInputValue] = useState("");
+	const [showInput, setShowInput] = useState(false);
 
+	useEffect(() => {
+		function closeInput(e) {
+			console.log(e)
+			if (e.target.id !== "search" && e.target.id !== "loupe") {
+				setShowInput(false);
+			}
+
+		}
+		window.addEventListener("click", closeInput)
+
+		return () => window.removeEventListener("click", closeInput)
+	})
+
+	const searchUsers = (e) => {
+		let value = e.target.value;
+		setInputValue(value);
+	}
+
+	
 
 	return (
 		<nav className="navbar">
@@ -28,30 +46,39 @@ const Navbar = () => {
 					<NavLink to={uid.uid === null ? "/" : "/home"}>
 						<div className="logo">
 							<img src="/img/icons/galaxy.svg" alt="" />
-							<h3>UniverseGram</h3>
+						{dimensions.width > 767 ? <h3>UniverseGram</h3> :
+							dimensions.width < 768 && !showInput && <h3>UniverseGram</h3>}
 						</div>
 					</NavLink>
 				</div>
 				{uid ?
 					<>
+					{
+						!showInput ? 
+							<img id="loupe" src={process.env.PUBLIC_URL + "/img/icons/loupe.svg"} alt="loupe" onClick={() => setShowInput(true)} />
+						:
+
 						<div className="search">
 
 						<label htmlFor="search"></label>
-						<input type="search" id="search" value={inputValue} onChange={(e) =>setInputValue(e.target.value)} />
+						<input type="search" id="search" onChange={searchUsers} />
 						<ul>
-							{!isEmpty(usersData[0]) && usersData.map((user) => {
-								if (user.pseudo.toLowerCase().includes(inputValue.toLowerCase())) {
+							{inputValue.length > 1 && usersData.filter((user) => user.pseudo.toLowerCase().includes(inputValue.toLowerCase())).map((user) => {
+								
 									return (
-										<li key={user._id}  className="search__user">
-											<img src={user.picture.slice(1)} alt={user.pseudo + "-pic"} />
-											<p>{user.pseudo}</p>
-										</li>
+										<Link to={`/profil/${user._id}`} >
+											<li key={user._id} className="search__user" onClick={() => {setShowInput(!showInput); setInputValue("")}}>
+												<img src={user.picture.slice(1)} alt={user.pseudo + "-pic"} />
+												<p>{user.pseudo}</p>
+											</li>
+										</Link>
 									)
 								
-								} return null
+								
 							})}
 						</ul>	
 						</div>
+					}
 						<div className="welcome">
 							{dimensions.width > 767  && uid.uid &&
 								<>
