@@ -26,6 +26,10 @@
 		text-align: center;
 		margin: 20px 0 6px;
 	}
+	h4 {
+		text-align: center;
+		margin: 10px 0;
+	}
 
 	.img-container {
 		display: grid;
@@ -73,6 +77,7 @@
       border-radius: 20px;
       padding: 25px;
       margin: 20px 10px;
+	  backdrop-filter: blur(2px);
 	  
       @media screen and(max-width: 700px) {
         margin: 10px 10px;
@@ -151,10 +156,10 @@
       }
       p,
       textarea {
-        min-height: 80px;
+        min-height: 50px;
         border: 1px solid $color-1;
         border-radius: 20px 20px 6px 20px;
-        padding: 10px 20px;
+        padding: 5px 10px;
         font-size: 1.1rem;
 		background-color: #120a524a;
 		font-size: 1.3rem;
