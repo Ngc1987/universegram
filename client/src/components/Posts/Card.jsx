@@ -46,6 +46,8 @@ const Card = ({ post, page }) => {
 		// e.target.style.setProperty("--y", e.clientY - rect.top);
 	}
 
+	console.log("627c2e7d72f2170f5eb995d3")
+
 	return (
 		<article className={`card-container feature ${page === "home" ? "homePost" : page === "profil" ? "profilPost" : "trendPost" }`} key={post._id}
 												//  onPointerMove={(e) => glow(e)} 

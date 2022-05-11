@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema(
 			maxLength: 1024,
 			minLength: 6
 		},
-		dimension: {
+		planet: {
 			type: String,
 		},
 		galaxy: {

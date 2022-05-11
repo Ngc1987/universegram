@@ -17,17 +17,20 @@ const Navbar = () => {
 	const usersData = useSelector((state) => state.usersReducer);
 	const dimensions = useWindowSize();
 
+	const search = useRef(null);
+
 	const [inputValue, setInputValue] = useState("");
 	const [showInput, setShowInput] = useState(false);
 
 	useEffect(() => {
 		function closeInput(e) {
-			console.log(e)
+			// console.log(e)
 			if (e.target.id !== "search" && e.target.id !== "loupe") {
 				setShowInput(false);
 			}
 
 		}
+		
 		window.addEventListener("click", closeInput)
 
 		return () => window.removeEventListener("click", closeInput)
@@ -38,7 +41,8 @@ const Navbar = () => {
 		setInputValue(value);
 	}
 
-	
+
+	// console.log(search)
 
 	return (
 		<nav className="navbar">
@@ -55,13 +59,13 @@ const Navbar = () => {
 					<>
 					{
 						!showInput ? 
-							<img id="loupe" src={process.env.PUBLIC_URL + "/img/icons/loupe.svg"} alt="loupe" onClick={() => setShowInput(true)} />
+							<img id="loupe" src={process.env.PUBLIC_URL + "/img/icons/loupe.svg"} alt="loupe" onClick={() => {setShowInput(true); search.current.focus()}} />
 						:
 
 						<div className="search">
 
 						<label htmlFor="search"></label>
-						<input type="search" id="search" onChange={searchUsers} />
+						<input type="search" id="search" ref={search} onChange={searchUsers} />
 						<ul>
 							{inputValue.length > 1 && usersData.filter((user) => user.pseudo.toLowerCase().includes(inputValue.toLowerCase())).map((user) => {
 								

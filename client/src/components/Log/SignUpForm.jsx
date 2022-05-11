@@ -14,6 +14,8 @@ const SignUpForm = () => {
 	const [pseudo, setPseudo] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [planet, setPlanet] = useState("");
+	const [galaxy, setGalaxy] = useState("");
 	const [controlPassword, setControlPassword] = useState("");
 
 
@@ -46,7 +48,9 @@ const SignUpForm = () => {
 				data: {
 					pseudo,
 					email,
-					password
+					password,
+					planet,
+					galaxy
 				}
 			})
 			.then((res) => {
@@ -82,18 +86,44 @@ const SignUpForm = () => {
 					id="pseudo"
 					onChange={(e) => setPseudo(e.target.value)}
 					value={pseudo}
+					required
 				/>
 				<div className="pseudo error"></div>
 				<br />
 
-				<label htmlFor="pseudo">Email</label>
+				<label htmlFor="email">Email</label>
 				<input type="email"
 					name="email"
 					id="email"
 					onChange={(e) => setEmail(e.target.value)}
 					value={email}
+					required
 				/>
 				<div className="email error"></div>
+				<br />
+
+				<label htmlFor="planet">Planète</label>
+				<input type="text"
+					name="planet"
+					id="planet"
+					onChange={(e) => setPlanet(e.target.value)}
+					value={planet}
+					min={2}
+					required
+				/>
+				{/* <div className="email error"></div> */}
+				<br />
+
+				<label htmlFor="galaxy">Galaxie</label>
+				<input type="text"
+					name="galaxy"
+					id="galaxy"
+					onChange={(e) => setGalaxy(e.target.value)}
+					value={galaxy}
+					min={2}
+					required
+				/>
+				{/* <div className="email error"></div> */}
 				<br />
 
 				<label htmlFor="password">Mot de passe</label>
@@ -102,6 +132,7 @@ const SignUpForm = () => {
 					id="password"
 					onChange={(e) => setPassword(e.target.value)}
 					value={password}
+					required
 				/>
 				<div className="password error"></div>
 				<br />
@@ -112,6 +143,7 @@ const SignUpForm = () => {
 					id="password-conf"
 					onChange={(e) => setControlPassword(e.target.value)}
 					value={controlPassword}
+					required
 				/>
 				<div className="password-confirm error"></div>
 				<br />
