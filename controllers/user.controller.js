@@ -165,15 +165,15 @@ module.exports.sendMessage = async (req, res, next) => {
 
 	await UserModel.findById(req.params.id)
 		.then((user) => {
-			user.messages.unshift(req.body);
+			user.messages.push(req.body);
 			user.save();
 
 			UserModel.findOne({_id: req.body.receiverId})
 				.then((user) => {
-					user.messages.unshift(req.body);
+					user.messages.push(req.body);
 					user.save().then((user) => res.json(user))
 				})
 				.catch((err) => console.log(err))
 		})
-		.catch((err) => console.log(err))
+		.catch((err) => console.log("Erreur : " + err))
 }
