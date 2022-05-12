@@ -4,6 +4,8 @@ import errorsReducer from '../reducers/errorsReducer';
 export const GET_USER = "GET_USER";
 export const UPLOAD_PICTURE = "UPLOAD_PICTURE";
 export const UPDATE_BIO = "UPDATE_BIO";
+export const UPDATE_PLANET = "UPDATE_PLANET";
+export const UPDATE_GALAXY = "UPDATE_GALAXY";
 export const FOLLOW_USER = "FOLLOW_USER";
 export const UNFOLLOW_USER = "UNFOLLOW_USER";
 
@@ -51,6 +53,36 @@ export const updateBio = (userId, bio) => {
 		})
 			.then((res) => {
 				dispatch({ type: UPDATE_BIO, payload: bio })
+			})
+			.catch((err) => console.log(err))
+
+	}
+}
+
+export const updatePlanet = (userId, planet) => {
+	return (dispatch) => {
+		return axios({
+			method: "put",
+			url: `${process.env.REACT_APP_API_URL}/api/user/${userId}`,
+			data: { planet }
+		})
+			.then((res) => {
+				dispatch({ type: UPDATE_PLANET, payload: planet })
+			})
+			.catch((err) => console.log(err))
+
+	}
+}
+
+export const updateGalaxy = (userId, galaxy) => {
+	return (dispatch) => {
+		return axios({
+			method: "put",
+			url: `${process.env.REACT_APP_API_URL}/api/user/${userId}`,
+			data: { galaxy }
+		})
+			.then((res) => {
+				dispatch({ type: UPDATE_GALAXY, payload: galaxy })
 			})
 			.catch((err) => console.log(err))
 

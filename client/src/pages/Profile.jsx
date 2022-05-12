@@ -6,6 +6,7 @@ import Card from './../components/Posts/Card';
 import { useSelector } from 'react-redux';
 import LeftNav from "../components/LeftNav";
 import { useParams } from 'react-router-dom';
+import { isEmpty } from "../utils/isEmpty";
 
 /**
  * @component
@@ -30,7 +31,7 @@ const Profile = () => {
 		{uid ? 
 			<>
 				<UpdateProfile/>
-				{posts.map((post) => {
+				{!isEmpty(posts[0]) && posts.map((post) => {
 					if (post.posterId === id) {
 						return (
 							<Card post={post} key={post._id} page="profil"/>

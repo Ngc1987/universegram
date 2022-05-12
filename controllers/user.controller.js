@@ -29,8 +29,8 @@ module.exports.updateUser =  (req, res) => {
 			{
 				$set: {
 					bio: req.body.bio,
-					galaxy: req.body.galaxy,
-					dimension: req.body.dimension
+					planet: req.body.planet,
+					galaxy: req.body.galaxy
 				}
 			}, { new: true, upsert: true, setDefaultOnInsert: true },
 			(err, docs) => {
