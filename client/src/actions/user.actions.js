@@ -8,6 +8,7 @@ export const UPDATE_PLANET = "UPDATE_PLANET";
 export const UPDATE_GALAXY = "UPDATE_GALAXY";
 export const FOLLOW_USER = "FOLLOW_USER";
 export const UNFOLLOW_USER = "UNFOLLOW_USER";
+export const ADD_MESSAGE = "ADD_MESSAGE";
 
 // Errors
 export const GET_USER_ERRORS = "GET_USER_ERRORS";
@@ -118,3 +119,18 @@ export const unfollowUser = (followerId, idToUnfollow) => {
 			.catch((err) => console.log(err));
 	};
 };
+
+export const addMessage = (writerId, receiverId, text, timestamp) => {
+	return (dispatch) => {
+		return axios({
+			method: "put",
+			url: `${process.env.REACT_APP_API_URL}/api/user/message/${writerId}`,
+			data: { writerId, receiverId, text, timestamp }
+		})
+			.then((res) => {
+				dispatch({ type: ADD_MESSAGE, payload: writerId, receiverId, text, timestamp })
+			})
+			.catch((err) => console.log(err))
+
+	}
+}

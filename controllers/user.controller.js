@@ -156,27 +156,24 @@ module.exports.unfollow = async (req, res, next) => {
 	catch (err) {
 		res.status(401).json({ error: err.message })
 	}
-	// console.log(req.params.id, req.body.idToFollow)
-
-	// UserModel.findById(req.params.id)
-	// 	.then((user) => {
-
-	// 		// if(user.following.includes(req.body.idToFollow)){
-	// 		// 	return res.status(400).json({ message: "Already following" })
-	// 		// }
-			
-	// 		user.following.filter((followed) => followed._id !== req.body.idToUnfollow)
-	// 		// user.following.unshift(req.body.idToFollow);
-	// 		user.save();
-
-	// 		UserModel.findOne({ _id: req.body.idToUnfollow })
-	// 			.then((user) => {
-	// 				user.followers.filter((follower) => follower._id !== req.params.id)
-	// 				user.save().then((user) => res.json(user))
-	// 			})
-	// 			.catch((err) => console.log(err))
-	// 	})
-	// 	.catch((err) => console.log(err))
 }
 
 
+module.exports.sendMessage = async (req, res, next) => {
+	if (!ObjectId.isValid(req.params.id) || !ObjectId.isValid(req.body.receiverId))
+		return res.status(400).send("Invalid id: " + req.params.id);
+
+	await UserModel.findById(req.params.id)
+		.then((user) => {
+			user.messages.unshift(req.body);
+			user.save();
+
+			UserModel.findOne({_id: req.body.receiverId})
+				.then((user) => {
+					user.messages.unshift(req.body);
+					user.save().then((user) => res.json(user))
+				})
+				.catch((err) => console.log(err))
+		})
+		.catch((err) => console.log(err))
+}
