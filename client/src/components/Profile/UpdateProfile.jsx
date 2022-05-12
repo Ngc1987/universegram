@@ -8,7 +8,8 @@ import FollowHandler from "./FollowHandler";
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { UidContext } from './../AppContext';
-import { getUser } from './../../actions/user.actions';
+import { getUser, updatePlanet, updateGalaxy } from './../../actions/user.actions';
+import { isEmpty } from './../../utils/isEmpty';
 
 const UpdateProfile = () => {
 
@@ -37,23 +38,23 @@ const UpdateProfile = () => {
 		setUpdateBioForm(false);
 	}
 	const handleUpdatePlanet = () => {
-		// dispatch(updatePlanet(userData._id, planet))
+		dispatch(updatePlanet(userData._id, planet))
 		setUpdatePlanetForm(false);
 	}
 	const handleUpdateGalaxy = () => {
-		// dispatch(updateGalaxy(userData._id, galaxy))
+		dispatch(updateGalaxy(userData._id, galaxy))
 		setUpdateGalaxyForm(false);
 	}
 
 
-	console.log(userData.bio)
+	console.log(planet, userData.planet)
 	// console.log(dateParser("2022-05-09T11:23:52.094Z"))
 	// console.log(dateParser("2020-10-09T19:47:04.168Z"))
 
 	return (
 		<div className="profil-container">
 
-			{usersData.map((user) => {
+			{!isEmpty(usersData[0]) && usersData.map((user) => {
 				if (user._id === id) {
 					return (
 						<div className="profil-container-child" key={user._id} >
@@ -72,18 +73,19 @@ const UpdateProfile = () => {
 
 								<div className="right-part">
 									<div className="bio-update">
-										<h3>Bio</h3>
 										{updateBioForm === false && uid === user._id && (
 											<>
-												<p onClick={() => setUpdateBioForm(!updateBioForm)}>{userData.bio}</p>
+												<h3>Bio</h3>
+												<p className="bio-update-p" onClick={() => setUpdateBioForm(!updateBioForm)}>{userData.bio}</p>
 												{uid === user._id &&
-													<button onClick={() => setUpdateBioForm(!updateBioForm)}>Modifier bio</button>
+													<button onClick={() => setUpdateBioForm(!updateBioForm)}>Modifier</button>
 												}
 											</>
 										)}
 										{updateBioForm && uid === user._id && (
 											<>
 												<textarea
+													// className="bio-update-textarea"
 													type="text"
 													defaultValue={userData.bio}
 													onChange={(e) => setBio(e.target.value)}
@@ -92,36 +94,90 @@ const UpdateProfile = () => {
 												<button onClick={handleUpdateBio}>Valider modifications</button>
 											</>
 										)}
-										{uid !== user._id && <p>{user.bio}</p>}
 									</div>
+									{uid !== user._id &&
+										<div className="bio-otherUser">
+											<h3>Bio</h3>
+											<p>{user.bio}</p>
+										</div>
+									}
 									<div className="planet-update">
-										<h3>Planète</h3>
 										{updatePlanetForm === false && uid === user._id && (
 											<>
-												<p onClick={() => setUpdatePlanetForm(!updatePlanetForm)}>{userData.planet}</p>
+
+												<div className="planet-update-inputs">
+													<h3>Planète</h3>
+													<p onClick={() => setUpdatePlanetForm(!updatePlanetForm)}>{userData.planet}</p>
+												</div>
 												{uid === user._id &&
 													<button onClick={() => setUpdatePlanetForm(!updatePlanetForm)}>
-														Modifier planète
+														Modifier
 													</button>
 												}
 											</>
 										)}
 										{updatePlanetForm && uid === user._id && (
 											<>
-												<textarea
-													type="text"
-													defaultValue={userData.planet}
-													onChange={(e) => setBio(e.target.value)}
-												></textarea>
 
-												<button onClick={handleUpdatePlanet}>Valider modifications</button>
+												<div className="planet-update-inputs">
+													<h3>Planète</h3>
+													<input
+														type="text"
+														defaultValue={userData.planet}
+														onChange={(e) => setPlanet(e.target.value)}
+													></input>
+
+												</div>
+												<button onClick={handleUpdatePlanet}>Valider</button>
 											</>
 										)}
-										{uid !== user._id && <p>{user.planet}</p>}
 									</div>
-									
-									<h5 onClick={() => setFollowingPopup(true)} >Abonnements: {user.following?.length}</h5>
-									<h5 onClick={() => setFollowersPopup(true)} >Abonnés: {user.followers?.length}</h5>
+										{uid !== user._id &&
+											<div className="planet-otherUser">
+												<h3>Planète</h3>
+												<p>{user.planet}</p>
+											</div>
+										}
+									<div className="galaxy-update">
+										{updateGalaxyForm === false && uid === user._id && (
+											<>
+
+												<div className="galaxy-update-inputs">
+													<h3>Galaxie</h3>
+													<p onClick={() => setUpdateGalaxyForm(!updateGalaxyForm)}>{userData.galaxy}</p>
+												</div>
+												{uid === user._id &&
+													<button onClick={() => setUpdateGalaxyForm(!updateGalaxyForm)}>Modifier</button>
+												}
+											</>
+										)}
+										{updateGalaxyForm && uid === user._id && (
+											<>
+
+												<div className="galaxy-update-inputs">
+													<h3>Galaxie</h3>
+													<input
+														type="text"
+														defaultValue={userData.galaxy}
+														onChange={(e) => setGalaxy(e.target.value)}
+													></input>
+
+												</div>
+												<button onClick={handleUpdateGalaxy}>Valider</button>
+											</>
+										)}
+									</div>
+										{uid !== user._id &&
+											<div className="galaxy-otherUser">
+												<h3>Galaxie</h3>
+												<p>{user.galaxy}</p>
+											</div>
+										}
+
+									<div className="buttons">
+										<h5 onClick={() => setFollowingPopup(true)} >Abonnements: {user.following?.length}</h5>
+										<h5 onClick={() => setFollowersPopup(true)} >Abonnés: {user.followers?.length}</h5>
+									</div>
 								</div>
 							</div>
 							{
