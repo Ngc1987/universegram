@@ -27,8 +27,13 @@ const Navbar = () => {
 			// console.log(e)
 			if (e.target.id !== "search" && e.target.id !== "loupe") {
 				setShowInput(false);
+				setInputValue("")
 			}
 
+		}
+
+		if(showInput) {
+			search.current.focus()
 		}
 		
 		window.addEventListener("click", closeInput)
@@ -64,7 +69,7 @@ const Navbar = () => {
 							<img id="loupe" src={process.env.PUBLIC_URL + "/img/icons/loupe.svg"} alt="loupe" onClick={() => {setShowInput(true); search.current.focus()}} />
 						:
 						<div className="search">
-						{dimensions.width < 768 && <img id="loupe" src={process.env.PUBLIC_URL + "/img/icons/loupe.svg"} alt="loupe" onClick={() => {setShowInput(true); search.current.focus()}} />}
+						{dimensions.width < 400 && <img id="loupe" src={process.env.PUBLIC_URL + "/img/icons/loupe.svg"} alt="loupe" onClick={() => {setShowInput(true); search.current.focus()}} />}
 							<label htmlFor="search"></label>
 							<input type="search" id="search" ref={search} onChange={searchUsers} />
 							<ul>

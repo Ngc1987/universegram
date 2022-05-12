@@ -20,7 +20,7 @@ const LeftNav = () => {
 					</NavLink>
 					<br />
 					<NavLink to="/chat" activeclassname="active-left-nav">
-						<img src="/img/icons/rocket.svg" alt="Rocket logo" />
+						<img src="/img/icons/message2.svg" alt="Message logo" />
 					</NavLink>
 				</div>
 			</div>
