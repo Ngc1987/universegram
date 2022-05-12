@@ -57,6 +57,16 @@ const userSchema = new mongoose.Schema(
 		},
 		likes: {
 			type: [String]
+		},
+		messages: {
+			type: [
+				{
+					writerId: String,
+					receiverId: String,
+					text: String,
+					timestamp: Number
+				}
+			]
 		}
 	},
 	{

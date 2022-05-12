@@ -25,6 +25,9 @@ router.delete("/:id", userController.deleteUser);
 router.patch("/follow/:id", userController.follow)
 router.patch("/unfollow/:id", userController.unfollow)
 
+// User messages
+router.put("/message/:id", userController.sendMessage);
+
 // Upload routes
 router.post("/upload", upload.single("file"), uploadController.uploadProfile)
 

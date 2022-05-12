@@ -50,7 +50,9 @@ const Navbar = () => {
 					<NavLink to={uid.uid === null ? "/" : "/home"}>
 						<div className="logo">
 							<img src="/img/icons/galaxy.svg" alt="" />
-						{dimensions.width > 767 ? <h3>UniverseGram</h3> :
+						{dimensions.width < 300 ? <h3 className="smallTitle" >Universe Gram</h3>:
+							dimensions.width > 767 ? <h3>UniverseGram</h3> 
+						:
 							dimensions.width < 768 && !showInput && <h3>UniverseGram</h3>}
 						</div>
 					</NavLink>
@@ -61,26 +63,25 @@ const Navbar = () => {
 						!showInput ? 
 							<img id="loupe" src={process.env.PUBLIC_URL + "/img/icons/loupe.svg"} alt="loupe" onClick={() => {setShowInput(true); search.current.focus()}} />
 						:
-
 						<div className="search">
-
-						<label htmlFor="search"></label>
-						<input type="search" id="search" ref={search} onChange={searchUsers} />
-						<ul>
-							{inputValue.length > 1 && usersData.filter((user) => user.pseudo.toLowerCase().includes(inputValue.toLowerCase())).map((user) => {
-								
-									return (
-										<Link to={`/profil/${user._id}`} >
-											<li key={user._id} className="search__user" onClick={() => {setShowInput(!showInput); setInputValue("")}}>
-												<img src={user.picture.slice(1)} alt={user.pseudo + "-pic"} />
-												<p>{user.pseudo}</p>
-											</li>
-										</Link>
-									)
-								
-								
-							})}
-						</ul>	
+						{dimensions.width < 768 && <img id="loupe" src={process.env.PUBLIC_URL + "/img/icons/loupe.svg"} alt="loupe" onClick={() => {setShowInput(true); search.current.focus()}} />}
+							<label htmlFor="search"></label>
+							<input type="search" id="search" ref={search} onChange={searchUsers} />
+							<ul>
+								{inputValue.length > 1 && usersData.filter((user) => user.pseudo.toLowerCase().includes(inputValue.toLowerCase())).map((user) => {
+									
+										return (
+											<Link to={`/profil/${user._id}`} >
+												<li key={user._id} className="search__user" onClick={() => {setShowInput(!showInput); setInputValue("")}}>
+													<img src={user.picture.slice(1)} alt={user.pseudo + "-pic"} />
+													<p>{user.pseudo}</p>
+												</li>
+											</Link>
+										)
+									
+									
+								})}
+							</ul>	
 						</div>
 					}
 						<div className="welcome">

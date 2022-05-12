@@ -1,5 +1,5 @@
 
-import { GET_USER, UPLOAD_PICTURE, UPDATE_BIO, UPDATE_PLANET, UPDATE_GALAXY, FOLLOW_USER, UNFOLLOW_USER } from '../actions/user.actions';
+import { GET_USER, UPLOAD_PICTURE, UPDATE_BIO, UPDATE_PLANET, UPDATE_GALAXY, FOLLOW_USER, UNFOLLOW_USER, ADD_MESSAGE } from '../actions/user.actions';
 
 const initialState = {};
 
@@ -37,12 +37,19 @@ export default function userReducer(state = initialState, action) {
 				...state,
 				following: [action.payload.idToFollow, ...state.following],
 			}
+
 		case UNFOLLOW_USER:
 			return {
 				...state,
 				following: state.following.filter(
 					(id) => id !== action.payload.idToUnfollow
 				),
+			}
+		
+		case ADD_MESSAGE:
+			return {
+				...state,
+				messages: [action.payload, ...state.messages],
 			}
 
 		default:

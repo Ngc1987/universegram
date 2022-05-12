@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { isEmpty } from './../../utils/isEmpty';
 import useWindowSize from "../../hooks/useWindowSize";
 import MobileNav from "../MobileNav/MobileNav";
+import MessagesBox from './../MessagesBox';
 
 
 /**
@@ -70,7 +71,7 @@ const AppRouter = () => {
 				{/* <Route path="/" element={<Login />} /> */}
 				<Route path="/home" element={<Home />} />
 				<Route path="/profil/:id" element={<Profile />} />
-				<Route path="/trending" element={<Trending />} />
+				<Route path="/chat" element={<MessagesBox />} />
 				<Route path="*" element={<Navigate replace to={uid ? "/home" : "/"} />} />
 			
 			
