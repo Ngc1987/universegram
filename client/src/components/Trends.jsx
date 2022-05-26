@@ -28,16 +28,18 @@ const Trends = () => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [posts])
 
+	// console.log(posts)
+
 	return (
 		<div className="trending-container">
-			<h4>Trending</h4>
-			<NavLink to="/trending" >
+			<h4>Post les plus likés</h4>
 				<ul>
 					{trendList.length && 
 						trendList.map((post) => {
 							return (
 								<li key={post._id} >
 									<div>
+			<NavLink to={`/profil/${post.posterId}`} >
 										{post.picture && <img src={post.picture} alt={`post-pic`} />}
 										{/* {post.video && <iframe width={500} height={300} src={post.video} frameBorder="0" allow="fullscreen" title={post._id} ></iframe>} */}
 										{isEmpty(post.picture)  && <img src={usersData[0] && usersData.map((user) => {
@@ -47,17 +49,16 @@ const Trends = () => {
 												return null
 											}
 										}).join("")} alt={`profil-pic`} />}
+			</NavLink>
 									</div>
 									<div className="trend-content">
 										<p>{post.message}</p>
-										<span>Lire</span>
 									</div>
 								</li>
 							)
 						})
 					}
 				</ul>
-			</NavLink>
 		</div>
 	)
 }

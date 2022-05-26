@@ -150,6 +150,7 @@
 			height: 42px;
 			width: 42px;
 			filter: drop-shadow(2px 2px 5px #fff);
+			animation: turn 10s infinite linear;
 		}
 
 		.smallTitle {
@@ -203,3 +204,11 @@
   }
 
 
+@keyframes turn {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

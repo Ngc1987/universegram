@@ -28,7 +28,8 @@ const AppRouter = () => {
 	
 	const dimensions = useWindowSize()
 
-	console.log(userData._id, userData[0])
+	// console.log(uid, userData[0])
+	console.log(userData)
 	
 	window.onload = function () {
 		Particles.init({
@@ -66,7 +67,7 @@ const AppRouter = () => {
 				{uid && dimensions.width > 767 && <LeftNav />}
 
 			<Routes>
-				<Route path="/" element={<Login />}/>
+				<Route path="/" element={uid ? <Navigate replace to="/home"/> : <Login />}/>
 				
 				{/* <Route path="/" element={<Login />} /> */}
 				<Route path="/home" element={<Home />} />

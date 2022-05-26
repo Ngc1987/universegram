@@ -78,7 +78,7 @@ const Navbar = () => {
 										return (
 											<Link to={`/profil/${user._id}`} >
 												<li key={user._id} className="search__user" onClick={() => {setShowInput(!showInput); setInputValue("")}}>
-													<img src={user.picture.slice(1)} alt={user.pseudo + "-pic"} />
+													<img src={user.picture} alt={user.pseudo + "-pic"} />
 													<p>{user.pseudo}</p>
 												</li>
 											</Link>
