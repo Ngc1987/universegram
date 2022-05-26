@@ -46,8 +46,10 @@ const UpdateProfile = () => {
 		setUpdateGalaxyForm(false);
 	}
 
+	// const user = usersData.find((user) => user._id === id);
 
-	console.log(planet, userData.planet)
+	// console.log(user)
+	// console.log(userData, userData.planet, usersData)
 	// console.log(dateParser("2022-05-09T11:23:52.094Z"))
 	// console.log(dateParser("2020-10-09T19:47:04.168Z"))
 
@@ -65,7 +67,7 @@ const UpdateProfile = () => {
 							<div className="update-container">
 								<div className="left-part">
 									<h3>Photo de profil</h3>
-									<img src={user.picture.slice(1)} alt="Profil de l'utilisateur" />
+									<img src={user.picture} alt="Profil de l'utilisateur" />
 									<UploadImg />
 									<p>{errors.maxSize}</p>
 									<p>{errors.format}</p>
@@ -194,7 +196,7 @@ const UpdateProfile = () => {
 														if (otherUser._id === user.following[i]) {
 															return (
 																<li className="popup-ul-li" key={otherUser._id} >
-																	<img src={otherUser.picture.slice(1)} alt={`${otherUser.pseudo}-pic`} />
+																	<img src={otherUser.picture} alt={`${otherUser.pseudo}-pic`} />
 																	<h4>{otherUser.pseudo}</h4>
 																	<div className="follow-handler">
 																		<FollowHandler idToFollowOrUnfollow={otherUser._id} type="suggestion" />
@@ -203,7 +205,7 @@ const UpdateProfile = () => {
 															)
 														}
 													}
-													return null
+													{/* return null */}
 												})}
 										</ul>
 									</div>
@@ -222,7 +224,7 @@ const UpdateProfile = () => {
 													if (otherUser._id === user.followers[i]) {
 														return (
 															<li className="popup-ul-li" key={otherUser._id} >
-																<img src={otherUser.picture.slice(1)} alt={`${otherUser.pseudo}-pic`} />
+																<img src={otherUser.picture} alt={`${otherUser.pseudo}-pic`} />
 																<h4>{otherUser.pseudo}</h4>
 																<div className="follow-handler">
 																	<FollowHandler idToFollowOrUnfollow={otherUser._id} type="suggestion" />
@@ -231,7 +233,7 @@ const UpdateProfile = () => {
 														)
 													}
 												}
-												return null
+												{/* return null */}
 											})}
 										</ul>
 									</div>
@@ -241,7 +243,7 @@ const UpdateProfile = () => {
 						</div>
 					)
 				}
-				return null
+				{/* return null */}
 			})}
 
 		</div>

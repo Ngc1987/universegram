@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { getUser } from "../../actions/user.actions";
 import { useContext } from 'react';
 import { UidContext } from './../AppContext';
+import { getUsers } from "../../actions/users.actions";
 
 
 /**
@@ -23,6 +24,7 @@ const SignInForm = () => {
 	const [password, setPassword] = useState("");
 	
 
+	console.log(uid)
 	// Function to login the user or display the errors
 	const handleLogin = (e) => {
 		e.preventDefault();
@@ -45,10 +47,12 @@ const SignInForm = () => {
 				emailError.innerHTML = res.data.errors.email;
 				passwordError.innerHTML = res.data.errors.password;
 			} else {
-				dispatch(getUser(res.data.user));
-				setUid(res.data.user)
+				dispatch(getUser(res.data.user))
+					.then(() => dispatch(getUsers()))
+					.then(() => setUid(res.data.user))
+					.then(() => navigate("/home"))
 			}
-			navigate("/home")
+			// navigate("/home")
 			
 		})
 		.catch((err) => {

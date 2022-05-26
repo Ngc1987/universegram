@@ -24,11 +24,11 @@ const Profile = () => {
 
 	// const userId = uid2.id
 
+	console.log(posts, uid)
 
 	return (
 		<div className="profil-page">
 			{/* <LeftNav/> */}
-		{uid ? 
 			<>
 				<UpdateProfile/>
 				{!isEmpty(posts[0]) && posts.map((post) => {
@@ -39,15 +39,6 @@ const Profile = () => {
 					} return null
 				})}
 			</>
-			:
-
-			<div className="log-container">
-				<Log signin={false} signup={true}/>
-				<div className="img-container">
-					<img src="./img/log.svg" alt="img-log" />
-				</div>
-			</div>
-		}
 		</div>
 	)
 }

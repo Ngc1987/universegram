@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { getPosts } from "../actions/post.actions";
 import { useSelector } from 'react-redux';
@@ -36,14 +36,39 @@ const Thread = () => {
 		}
 	}
 
+	// Making a refs array
+	const revealRefs = useRef([]);
+	revealRefs.current = [];
+
+	// Adding each ref on the refs array
+	const pathRef = (el) => {
+		if (el && !revealRefs.current.includes(el)) {
+			revealRefs.current.push(el);
+		}
+	};
+
+
+	const glow = (e) => {
+
+		revealRefs.current.forEach((el) => {
+			// console.log(el.style)
+			// const rect = el.getBoundingClientRect();
+	
+			// el.style.setProperty("--x", e.clientX - rect.left);
+			// el.style.setProperty("--y", e.clientY - rect.top);
+
+		})
+	}
+
+	// console.log(revealRefs.current, revealRefs)
 
 	return (
-		<div className="thread-container">
+		<div className="thread-container features" onPointerMove={(e) => glow(e)} >
 			
 				{!isEmpty(posts[0]) &&
 				posts.map((post) => {
 					return (
-						<Card post={post} key={post._id} page="home" />
+						<Card innerRef={pathRef} post={post} key={post._id} page="home" className="feature"/>
 					)
 				})}
 			

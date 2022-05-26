@@ -10,7 +10,7 @@ import DeleteCard from "./DeleteCard";
 import CardComment from './CardComment';
 import { Link } from "react-router-dom";
 
-const Card = ({ post, page }) => {
+const Card = ({ post, page, className, innerRef }) => {
 
 	// Fetch the necessary redux states
 	const usersData = useSelector((state) => state.usersReducer);
@@ -38,18 +38,11 @@ const Card = ({ post, page }) => {
 		setIsUpdated(false);
 	}
 
-	const glow = (e) => {
-		// console.log(e)
-		// const rect = e.getBoundingClientRect();
 
-		// e.target.style.setProperty("--x", e.clientX - rect.left);
-		// e.target.style.setProperty("--y", e.clientY - rect.top);
-	}
-
-	console.log("627c2e7d72f2170f5eb995d3")
 
 	return (
-		<article className={`card-container feature ${page === "home" ? "homePost" : page === "profil" ? "profilPost" : "trendPost" }`} key={post._id}
+		
+		<article ref={innerRef} className={`card-container ${className} ${page === "home" ? "homePost" : page === "profil" ? "profilPost" : "trendPost" }`} key={post._id}
 												//  onPointerMove={(e) => glow(e)} 
 												>
 			{isLoading ?
@@ -63,13 +56,12 @@ const Card = ({ post, page }) => {
 							!isEmpty(usersData[0]) &&
 							usersData.map((user) => {
 								if (user._id === post.posterId) {
-									return user.picture.slice(1)
+									return user.picture
 								} else {
 									return null;
 								}
 
-							})
-								.join("")}
+							}).join("")}
 							alt={usersData.map((user) => {
 								if (user._id === post.posterId) {
 									return `${user.pseudo}-pic`

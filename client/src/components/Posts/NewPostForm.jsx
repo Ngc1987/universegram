@@ -86,7 +86,7 @@ const NewPostForm = () => {
 						<p><span>{userData.followers ? userData.followers.length : 0}</span>{" "}Abonné{userData.followers && userData.followers.length > 1 && "s"}</p>
 					</div>
 					<div className="user-info">
-						<NavLink to="/profil" >
+						<NavLink to={`/profil/${userData._id}`} >
 							<img src={userData.picture} alt={userData.pseudo} />
 						</NavLink>
 					</div>
