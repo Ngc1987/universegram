@@ -46,6 +46,7 @@ const Navbar = () => {
 		setInputValue(value);
 	}
 
+	console.log(uid)
 
 	// console.log(search)
 
@@ -62,7 +63,7 @@ const Navbar = () => {
 						</div>
 					</NavLink>
 				</div>
-				{uid ?
+				{uid.uid &&
 					<>
 					{
 						!showInput ? 
@@ -73,11 +74,11 @@ const Navbar = () => {
 							<label htmlFor="search"></label>
 							<input type="search" id="search" ref={search} onChange={searchUsers} />
 							<ul>
-								{inputValue.length > 1 && usersData.filter((user) => user.pseudo.toLowerCase().includes(inputValue.toLowerCase())).map((user) => {
+								{inputValue.length > 0 && usersData.filter((user) => user.pseudo.toLowerCase().includes(inputValue.toLowerCase())).map((user) => {
 									
 										return (
-											<Link to={`/profil/${user._id}`} >
-												<li key={user._id} className="search__user" onClick={() => {setShowInput(!showInput); setInputValue("")}}>
+											<Link to={`/profil/${user._id}`} key={user._id}>
+												<li className="search__user" onClick={() => {setShowInput(!showInput); setInputValue("")}}>
 													<img src={user.picture} alt={user.pseudo + "-pic"} />
 													<p>{user.pseudo}</p>
 												</li>
@@ -101,12 +102,7 @@ const Navbar = () => {
 							
 						</div>
 					</>
-					:
-					<div className="welcome">
-						<NavLink to="/">
-							<img src="/img/icons/login.svg" alt="login" />
-						</NavLink>
-					</div>
+					
 				}
 		</nav>
 	)

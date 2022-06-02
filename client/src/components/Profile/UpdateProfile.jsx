@@ -53,6 +53,26 @@ const UpdateProfile = () => {
 	// console.log(dateParser("2022-05-09T11:23:52.094Z"))
 	// console.log(dateParser("2020-10-09T19:47:04.168Z"))
 
+	useEffect(() => {
+		function closeInput(e) {
+			// console.log(e)
+			if (e.target.id !== "bio-update-textarea" && e.target.id !== "bio-update-p") {
+				setUpdateBioForm(false);
+			}
+
+		}
+
+		// if (showInput) {
+		// 	search.current.focus()
+		// }
+
+		window.addEventListener("click", closeInput)
+
+		return () => window.removeEventListener("click", closeInput)
+	})
+
+	console.log(updateBioForm)
+
 	return (
 		<div className="profil-container">
 
@@ -75,31 +95,31 @@ const UpdateProfile = () => {
 
 								<div className="right-part">
 									<div className="bio-update">
+												<h3>Bio</h3>
 										{updateBioForm === false && uid === user._id && (
 											<>
-												<h3>Bio</h3>
-												<p className="bio-update-p" onClick={() => setUpdateBioForm(!updateBioForm)}>{userData.bio}</p>
+												<p id="bio-update-p" className="bio-update-p" onClick={() => setUpdateBioForm(true)}>{userData.bio}</p>
 												{uid === user._id &&
-													<button onClick={() => setUpdateBioForm(!updateBioForm)}>Modifier</button>
+													<button onClick={() => setUpdateBioForm(true)}>Modifier</button>
 												}
 											</>
 										)}
 										{updateBioForm && uid === user._id && (
 											<>
 												<textarea
-													// className="bio-update-textarea"
+													id="bio-update-textarea"
 													type="text"
 													defaultValue={userData.bio}
 													onChange={(e) => setBio(e.target.value)}
 												></textarea>
 
-												<button onClick={handleUpdateBio}>Valider modifications</button>
+												<button className="bio-update-button"  onClick={handleUpdateBio}>Valider modifications</button>
 											</>
 										)}
 									</div>
 									{uid !== user._id &&
 										<div className="bio-otherUser">
-											<h3>Bio</h3>
+											{/* <h3>Bio</h3> */}
 											<p>{user.bio}</p>
 										</div>
 									}
