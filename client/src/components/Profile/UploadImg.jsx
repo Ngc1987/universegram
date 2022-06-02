@@ -15,7 +15,6 @@ const UploadImg = () => {
 	const dispatch = useDispatch();
 
 	const userData = useSelector((state) => state.userReducer);
-	console.log(file)
 
 	const handleLoadPicture = (e) => {
 		e.preventDefault();
